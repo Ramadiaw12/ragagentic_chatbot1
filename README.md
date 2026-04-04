@@ -429,7 +429,7 @@ retriever_tool = create_retriever_tool(
     <td align="center">
       <strong>DIAWANE Ramatoulaye</strong><br/>
       <em>AI & Data Engineering</em><br/>
-      📧 <a href="rdiawane2001@gmail.com">xxx@example.com</a><br/>
+      📧 <a href="mailto:xxx@example.com">rdiawane2001@gmail.com</a><br/>
       🔗 <a href="https://github.com/Ramadiaw12">GitHub</a> •
       <a href="https://www.linkedin.com/in/ramatoulaye-diawane/">LinkedIn</a>
     </td>
