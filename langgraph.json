@@ -1,0 +1,7 @@
+{
+    "dependencies": ["langchain_openai", "./"],
+    "graphs": {
+        "agent_trag_bdcc": "./graph.py:graph"
+    },
+    "env": "./.env"
+}
