@@ -9,7 +9,9 @@ dependencies = [
     "ipykernel>=7.2.0",
     "langchain>=1.2.14",
     "langchain-community>=0.4.1",
+    "langchain-core>=1.2.25",
     "langchain-openai>=1.1.12",
+    "langchain-tool>=0.1.1",
     "langgraph>=1.1.4",
     "python-dotenv>=1.2.2",
 ]
