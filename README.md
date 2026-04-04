@@ -168,7 +168,7 @@ agentic-rag-langgraph/
 ### 1. Cloner le projet
 
 ```bash
-git clone https://github.com/votre-username/agentic-rag-langgraph.git
+git clone https://github.com/Ramadiaw12/agentic-rag-langgraph.git
 cd agentic-rag-langgraph
 ```
 
@@ -188,7 +188,7 @@ venv\Scripts\activate
 ### 3. Installer les dépendances
 
 ```bash
-pip install -r requirements.txt
+pip install -r pyproject.toml
 ```
 
 Contenu de `requirements.txt` :
@@ -250,8 +250,8 @@ L'agent se lancera en mode interactif dans le terminal.
 langgraph dev
 ```
 
-Le serveur démarre sur `http://localhost:8123` avec :
-- 🔗 **API REST** : `http://localhost:8123/api/v1/`
+Le serveur démarre sur `http://localhost:xxxx` avec :
+- 🔗 **API REST** : `http://localhost:xxxx/api/v1/`
 - 🎨 **Studio UI** : `https://smith.langchain.com/studio/` (connecté en local)
 
 ### Option 3 — Explorer via le Notebook
