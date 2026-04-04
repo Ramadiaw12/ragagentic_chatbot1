@@ -7,6 +7,7 @@ load_dotenv(override=True)
 # Vérifie que la clé est bien chargée
 api_key = os.getenv("OPENAI_API_KEY")
 
+# from langchain.chat_models import ChatOpenAI
 
 from langchain.agents import create_agent
 from langchain_openai import ChatOpenAI
