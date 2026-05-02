@@ -1,5 +1,7 @@
 from dotenv import load_dotenv
 import os
+import smtplib
+from email.mime.text import MIMEText
 
 # Charge le .env
 load_dotenv(override=True)
@@ -33,6 +35,10 @@ embedding_model = OpenAIEmbeddings(
 llm = ChatOpenAI(model="gpt-4o", temperature=0)
 
 texts = [
+    "Je me nomme Rahma DIAWANE"
+    "J'ai 24ans "
+    "Je travaille en freelance en tant que développeuse d'intelligence artificielle, où je crée des solutions innovantes pour mes clients en utilisant les dernières technologies d'IA"
+    "J'ai des compétences en N8N"
     "Je suis une futur ai engineer , now I work in CIH bank",
     "Je étudiant entrepreneur",
     "Je suis passionné par le développement de l'intelligence artificielle et j'aime apprendre de nouvelles technologies",
@@ -48,7 +54,6 @@ retrieval = vectorstore.as_retriever(kwargs={"k":5})
 retrieval_tool = create_retriever_tool(
     retriever=retrieval, name="kb_search", description="Search information about me"
     )
-
 @tool
 def send_mail(mail:str, subject:str, content:str):
     """Send email to the givel email with the provided subject and content"""
@@ -56,8 +61,26 @@ def send_mail(mail:str, subject:str, content:str):
     print("send_mail tool invoked")
     print("=="*50)
 
-    return f"This mail has been sent : destination {mail}, subject : {subject}, content : {content}" 
+    # CONFIG
+    sender_email = "ton_email@gmail.com"
+    app_password = "ton_app_password"  # ⚠️ celui généré
 
+    # Création du message
+    msg = MIMEText(content)
+    msg["Subject"] = subject
+    msg["From"] = sender_email
+    msg["To"] = mail
+
+    # Envoi via Gmail SMTP
+    try:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+            server.login(sender_email, app_password)
+            server.send_message(msg)
+        print("Email envoyé avec succès")
+    except Exception as e:
+        print("Erreur:", e)
+
+    return f"This mail has been sent : destination {mail}, subject : {subject}, content : {content}"
 @tool
 def get_employee_info (name: str):
     """Get more  informationa about this employee (name, salary, seniority)"""
