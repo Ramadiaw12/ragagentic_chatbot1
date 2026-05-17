@@ -369,7 +369,7 @@ retriever_tool = create_retriever_tool(
 
 ### 🔭 Interface LangSmith Studio
 
-![LangSmith Studio](./screenshots/langsmith_studio.png)
+![LangSmith Studio](./capture/img9.png)
 
 > *Visualisation des traces, du graphe d'états et des appels de tools en temps réel.*
 
@@ -377,7 +377,7 @@ retriever_tool = create_retriever_tool(
 
 ### 💬 Output de l'agent
 
-![Agent Output](./screenshots/agent_output.png)
+![Agent Output](./capture/img8.png)
 
 > *Réponse finale de l'agent après orchestration complète du pipeline RAG + Tools.*
 
