@@ -342,9 +342,9 @@ retriever_tool = create_retriever_tool(
 [Agent] → Appel tool: get_employee_info(name="Alice Martin")
 [Tool]  → {"poste": "Data Engineer", "email": "alice@company.com"}
 [Agent] → Appel tool: send_mail(to="alice@company.com", subject="Bienvenue!", body="...")
-[Tool]  → "✅ E-mail envoyé à alice@company.com"
-[Agent] → Réponse finale: "Alice Martin est Data Engineer dans l'équipe Data.
-           Je lui ai envoyé un e-mail de bienvenue à alice@company.com."
+[Tool]  → "✅ E-mail envoyé à rahma@company.com"
+[Agent] → Réponse finale: "rahma est Data Engineer dans l'équipe Data.
+           Je lui ai envoyé un e-mail de bienvenue à rahma@company.com."
 ```
 
 ---
@@ -353,7 +353,7 @@ retriever_tool = create_retriever_tool(
 
 ### 🖥️ Résultat dans le terminal
 
-![Résultat terminal](./screenshots/terminal_output.png)
+![Résultat terminal](./capture/img6.png)
 
 > *L'agent raisonne étape par étape et affiche les appels de tools dans le terminal.*
 
