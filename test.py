@@ -120,3 +120,5 @@ agent4=create_agent(
     system_prompt="Repond à la question de l'utilisation en utilisant les tools providers"
 
 )
+
+resp=agent4.invoke(input={"messages":[HumanMessage("Quel est la météo de Paris")]}, config=config)
