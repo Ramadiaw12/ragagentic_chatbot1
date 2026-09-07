@@ -30,3 +30,14 @@ resp= agent.invoke(input={"messages":[{"role":"user", "context":"myname is Rahma
 # print the last messages content from the agent response
 print(resp["messages"][-1].content)
 
+# Definir la selection de model dynamic, if we have a multiple model different que nous voulons tester or choisir  le model for local or production environnement 
+# The model selection is based on the runtime context
+@wrap_model_call
+def dynamic_select(request=ModelRequest, handler)-> ModelResponse:
+    env=request.runtime.context.get("env", "test")
+    if env=="env":
+        model=llm
+    else:
+        model=llm
+
+    return handler(request(model=model))
