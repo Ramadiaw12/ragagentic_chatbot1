@@ -117,5 +117,6 @@ agent4=create_agent(
     model="openai/gpt-oss-120b",
     tool=[get_info, get_employes_infor],
     checkpointer=memory,
-    
+    system_prompt="Repond à la question de l'utilisation en utilisant les tools providers"
+
 )
