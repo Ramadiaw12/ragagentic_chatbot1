@@ -8,7 +8,7 @@ from langchain.agents.middleware import ModelRequest, ModelResponse, wrap_model_
 from langgraph.checkpoint.memory import InMemorySaver
 from langchain.messages import HumanMessage, AIMessage, SystemMessage
 # from langgraph.checkpoint.prostgres import PostgresSaver
-from langchain.tools import tools
+from langchain.tools import tool
 
 # Load environnement variable from .env file
 load_dotenv(override=True)
@@ -101,5 +101,21 @@ def get_info(city : str):
 
 # Create a tool for to get the information about an employer salary
 @tool
-def
+def get_employes_infor(employer_name:str):
+    """
+    Obtenir des information à propos des employés de l'usine de production 
+    """
+    print("get_employes_infor Tool invoke")
+    return {
+        "name_employes": employer_name,
+        "Salary":58000,
+        "seniority":8
+    }
 
+# Ratachement des tools à un agent
+agent4=create_agent(
+    model="openai/gpt-oss-120b",
+    tool=[get_info, get_employes_infor],
+    checkpointer=memory,
+    
+)
