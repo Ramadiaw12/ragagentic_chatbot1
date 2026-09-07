@@ -140,8 +140,11 @@ resp4=agent4.invoke(input={"messages":[HumanMessage("Quel est la météo de Pari
 print(resp4["messages"][-1].content)
 
 # ADD NEW TOOLS FOR THE WEB RESEARCH
+
+
+# 
 @tool 
-def web_research(query:str, num_result:int=8) -> str:
+def web_research(query:str, num_results:int=8) -> str:
     """
     Search in the web using DuckDuckGo
     Arg:
@@ -151,4 +154,18 @@ def web_research(query:str, num_result:int=8) -> str:
         formated search results with title, description and urls
 
     """
-    
+    try:
+        print(f"Search tool is called  for {query}")
+        ddgs_search=DDGS
+        results=ddgs_search.text(query=query, max_results=num_results, backend="google")
+        if not results:
+            print(f"No result find for the {query}")
+        formated_results=[f"search for {query}: \n"]
+        for i, result in enumerate(results, 1):
+            title=result.get("title", "No title")
+            body=result.get("body", "No description available")
+            href=result.get("href", "")
+            formated_results.append (f"{i}. **{title}**, {body}, {href}")
+        return formated_results
+    except Exception as e:
+        print(str(e))
