@@ -4,6 +4,11 @@ import os
 from dotenv.ipython import load_dotenv
 from IPython.display import Mardown
 
+from langchain.agents.middleware import ModelRequest, ModelResponse, wrap_model_call
+from langgraph.checkpoint.memory import InMemorySaver
+from langchain.messages import HumanMessage, AIMessage, SystemMessage
+
+
 # Load environnement variable from .env file
 load_dotenv(override=True)
 
@@ -24,3 +29,4 @@ agent = create_agent(
 resp= agent.invoke(input={"messages":[{"role":"user", "context":"myname is Rahma"}]})
 # print the last messages content from the agent response
 print(resp["messages"][-1].content)
+
