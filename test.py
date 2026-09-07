@@ -2,12 +2,13 @@ from langchain.agents import create_agent
 from langchain_groq import ChatGroq
 import os
 from dotenv.ipython import load_dotenv
-from IPython.display import Mardown
+# from IPython.display import Mardown
 
 from langchain.agents.middleware import ModelRequest, ModelResponse, wrap_model_call
 from langgraph.checkpoint.memory import InMemorySaver
 from langchain.messages import HumanMessage, AIMessage, SystemMessage
-
+# from langgraph.checkpoint.prostgres import PostgresSaver
+from langchain.tools import tools
 
 # Load environnement variable from .env file
 load_dotenv(override=True)
@@ -33,7 +34,7 @@ print(resp["messages"][-1].content)
 # Definir la selection de model dynamic, if we have a multiple model different que nous voulons tester or choisir  le model for local or production environnement 
 # The model selection is based on the runtime context
 @wrap_model_call
-def dynamic_select(request=ModelRequest, handler)-> ModelResponse:
+def dynamic_select(request:ModelRequest, handler)-> ModelResponse:
     env=request.runtime.context.get("env", "test")
     if env=="env":
         model=llm
@@ -60,8 +61,45 @@ print(resp["response"][-1].content)
 
 # creata an agent with a checkpointer to save the conversation in memory
 memory=InMemorySaver()
-agent=create_agent(
+agent3=create_agent(
     model=llm,
     sytem_prompt="you are a helpful assistant",
     checkpointer=memory
 )
+
+# Invoke agent3 with a specific thread_id for save the conversation in memory
+config={"configurable":{"thread_id":1}}
+resp3=agent3.invoke(
+    input={"messages": {"HumanMessage": "mon nom est rahma"}},
+    config=config
+    )
+
+print(resp3["response"][-1].content)
+
+resp4=agent3.invoke(
+    input={"messages": {"HumanMessage": "C'est quoi mon nom"}},
+    config=config
+    )
+
+print(resp4["response"][-1].content)
+
+
+# CREATION DES TOOLS
+
+# Create a tool to get get information about the city what I live
+@tool
+def get_info(city : str):
+    """
+    Get information about a city
+    """
+    print("Info tool invoke")
+    return {
+        "city": city,
+        "temperature": "25 C",
+        "humidity": "50%"
+    }
+
+# Create a tool for to get the information about an employer salary
+@tool
+def
+
