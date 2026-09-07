@@ -41,3 +41,11 @@ def dynamic_select(request=ModelRequest, handler)-> ModelResponse:
         model=llm
 
     return handler(request(model=model))
+
+# Create an agent1 with chatgrok and dynamic model selection middleware for testing my functionnality
+agent1=create_agent(
+    model=llm,
+    tool=[],
+    debug=True,
+    middleware=[dynamic_select]
+)
