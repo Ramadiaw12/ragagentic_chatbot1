@@ -9,6 +9,7 @@ from langgraph.checkpoint.memory import InMemorySaver
 from langchain.messages import HumanMessage, AIMessage, SystemMessage
 # from langgraph.checkpoint.prostgres import PostgresSaver
 from langchain.tools import tool
+from ddgs import DDGS
 
 # Load environnement variable from .env file
 load_dotenv(override=True)
@@ -134,3 +135,5 @@ config={"configurable":{"thread_id":1}}
 resp4=agent4.invoke(input={"messages":[HumanMessage("Quel est la météo de Paris")]}, config=config)
 
 print(resp4["messages"][-1].content)
+
+# ADD NEW TOOLS FOR THE WEB RESEARCH
