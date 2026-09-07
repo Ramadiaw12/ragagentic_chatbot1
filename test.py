@@ -57,3 +57,11 @@ resp=agent1.invoke(input={"messages":[{"role":"user", "context":"C'est quoi un a
     )
 # Print the messges for  the agent1 response
 print(resp["response"][-1].content)
+
+# creata an agent with a checkpointer to save the conversation in memory
+memory=InMemorySaver()
+agent=create_agent(
+    model=llm,
+    sytem_prompt="you are a helpful assistant",
+    checkpointer=memory
+)
