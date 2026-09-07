@@ -15,15 +15,18 @@ from ddgs import DDGS
 load_dotenv(override=True)
 
 # Create a chatgroq instance avec specific model 
-llm = ChatGroq(
+advanced_llm = ChatGroq(
     model= "openai/gpt-oss-120b",
     temperature=0
 
 )
-
+basic_llm= ChatGroq(
+    model="openai/gpt-oss-20b",
+    temperature=0.2
+)
 # Create an agent with a chatgroq instance
 agent = create_agent(
-    model=llm,
+    model=advanced_llm,
     system_prompt= "you are a helpful assistant"
 )
 
@@ -38,15 +41,15 @@ print(resp["messages"][-1].content)
 def dynamic_select(request:ModelRequest, handler)-> ModelResponse:
     env=request.runtime.context.get("env", "test")
     if env=="env":
-        model=llm
+        model=basic_llm
     else:
-        model=llm
+        model=advanced_llm
 
     return handler(request(model=model))
 
 # Create an agent1 with chatgrok and dynamic model selection middleware for testing my functionnality
 agent1=create_agent(
-    model=llm,
+    model=advanced_llm,
     tool=[],
     debug=True,
     middleware=[dynamic_select]
@@ -137,3 +140,15 @@ resp4=agent4.invoke(input={"messages":[HumanMessage("Quel est la météo de Pari
 print(resp4["messages"][-1].content)
 
 # ADD NEW TOOLS FOR THE WEB RESEARCH
+@tool 
+def web_research(query:str, num_result:int=8) -> str:
+    """
+    Search in the web using DuckDuckGo
+    Arg:
+        query: search query string
+        num_result: number of the result to return(default=8)
+    Returns:
+        formated search results with title, description and urls
+
+    """
+    
