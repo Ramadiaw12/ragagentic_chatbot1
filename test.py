@@ -128,6 +128,9 @@ agent4=create_agent(
 
 )
 
+
+# Create a thread_id 
+config={"configurable":{"thread_id":1}}
 resp4=agent4.invoke(input={"messages":[HumanMessage("Quel est la météo de Paris")]}, config=config)
 
-print(resp["messages"][-1].content)
+print(resp4["messages"][-1].content)
