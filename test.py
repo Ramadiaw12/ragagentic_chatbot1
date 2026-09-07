@@ -112,7 +112,7 @@ def get_employes_infor(employer_name:str):
         "seniority":8
     }
 
-# Ratachement des tools à un agent
+# Rattachement des tools à un agent
 agent4=create_agent(
     model="openai/gpt-oss-120b",
     tool=[get_info, get_employes_infor],
