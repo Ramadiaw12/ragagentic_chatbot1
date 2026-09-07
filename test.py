@@ -51,7 +51,14 @@ agent1=create_agent(
     middleware=[dynamic_select]
 )
 # Create an object context for the agent1 to test the model selected by my middleware function
-resp=agent1.invoke(input={"messages":[{"role":"user", "context":"C'est quoi un agent loop"}]},
+resp=agent1.invoke(input=
+    {
+    "messages":[
+    {
+        "role":"user", 
+        "context":"C'est quoi un agent loop"
+     }]
+    },
 
     context={"env":"test"}
 
@@ -121,4 +128,6 @@ agent4=create_agent(
 
 )
 
-resp=agent4.invoke(input={"messages":[HumanMessage("Quel est la météo de Paris")]}, config=config)
+resp4=agent4.invoke(input={"messages":[HumanMessage("Quel est la météo de Paris")]}, config=config)
+
+print(resp["messages"][-1].content)
