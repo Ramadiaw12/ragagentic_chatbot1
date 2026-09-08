@@ -2,7 +2,7 @@ from langchain.agents import create_agent
 from langchain_groq import ChatGroq
 import os
 from dotenv.ipython import load_dotenv
-# from IPython.display import Mardown
+from IPython.display import Markdown
 
 from langchain.agents.middleware import ModelRequest, ModelResponse, wrap_model_call
 from langgraph.checkpoint.memory import InMemorySaver
@@ -172,8 +172,11 @@ def web_research(query:str, num_results:int=8) -> str:
 
 
 # 
-agent = create_agent(
+agent5 = create_agent(
     model=advanced_llm,
     tools=[web_research, get_employes_infor, get_info],
     debug=True
 )
+
+resp5=agent5.invoke(input={"messages":[HumanMessage("Donnes moi les derniers news sur l'intélligence artificielle")]})
+print(display(Markdown(resp["messages"][-1].content)))
