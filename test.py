@@ -142,7 +142,7 @@ print(resp4["messages"][-1].content)
 # ADD NEW TOOLS FOR THE WEB RESEARCH
 
 
-# 
+# Créer un tool pour que l'agent fasse des recherches dan sle web
 @tool 
 def web_research(query:str, num_results:int=8) -> str:
     """
@@ -169,3 +169,11 @@ def web_research(query:str, num_results:int=8) -> str:
         return formated_results
     except Exception as e:
         print(str(e))
+
+
+# 
+agent = create_agent(
+    model=advanced_llm,
+    tools=[web_research, get_employes_infor, get_info],
+    debug=True
+)
