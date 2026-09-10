@@ -216,4 +216,9 @@ def use_role_prompt(request: ModelRequest) -> str:
     """Generate a system prompt based a user role"""
     user_role=request.runtime.context.get("user_role", "user")
     base_prompt="You are a helpful assistant."
-    if user_role
+    if user_role =="expert":
+        return f"{base_prompt} Provide detailed technical responses"
+    elif user_role == "beginner":
+        return f"{base_prompt} Explained the context with simply and avoid jargon."
+    
+    return base_prompt
