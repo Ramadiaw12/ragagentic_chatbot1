@@ -207,7 +207,7 @@ agent=create_agent(
 )
 
 
-# CREATE A SYSTEM_PROMPT CHOICE
+# CREATE A SYSTEM_PROMPT DYNAMIQUE
 class Context(TypedDict):
     user_role: str
 
