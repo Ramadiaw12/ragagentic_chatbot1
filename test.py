@@ -251,3 +251,13 @@ context={"user_role": "beginner"}
 print(display(Markdown(result["messages"][-1].content)))
 
 # Recupétaion d'un resultat structuré dans le output
+class PersonalInfo(BaseModel):
+    name: str
+    email: str
+    website: str
+
+agent=create_agent(
+    model=advanced_llm,
+    tools=[],
+    response_format=ToolStrategy(PersonalInfo)
+)
