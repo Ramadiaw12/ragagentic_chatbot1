@@ -255,7 +255,7 @@ class PersonalInfo(BaseModel):
     name: str
     email: str
     website: str
-
+# 
 agent=create_agent(
     model=advanced_llm,
     tools=[],
@@ -266,3 +266,6 @@ result=agent.invoke(
     input={"messages":[{"role":"user", "content":"Extract personnal information from: Rahma, superrama86@gmail.com, https//superrama.com"}]},
     personal=result["structured_response"]
 )
+print(personal.name)
+print(personal.email)
+print(personal.website)
