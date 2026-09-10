@@ -12,6 +12,10 @@ from langchain.tools import tool
 from ddgs import DDGS
 from langchain.messages import ToolMessage
 from typing import TypedDict
+from pydantic import BaseModel
+from langchain.agents.structured_output import ToolStrategy
+
+
 
 # Load environnement variable from .env file
 load_dotenv(override=True)
@@ -245,3 +249,5 @@ result=agent.invoke(input={"messages":[
 context={"user_role": "beginner"}
 )
 print(display(Markdown(result["messages"][-1].content)))
+
+# Recupétaion d'un resultat structuré dans le output
