@@ -196,3 +196,11 @@ def tools_errors(request, handler):
         content=f"Tool error: Please check your input and try again. ({str(e)})",
         tool_call_id=request.tool_call["id"]
     )
+
+# 
+agent=create_agent(
+    model=advanced_llm,
+    middleware=[tools_errors],
+    tool=[web_research, get_employes_infor],
+    debug=True
+)
