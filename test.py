@@ -211,7 +211,8 @@ agent=create_agent(
 )
 
 
-# CREATE A SYSTEM_PROMPT DYNAMIQUE
+# CREATE A SYSTEM_PROMPT DYNAMIQUE! 
+# Contrôler le system prompt
 class Context(TypedDict):
     user_role: str
 
@@ -250,6 +251,10 @@ context={"user_role": "beginner"}
 )
 print(display(Markdown(result["messages"][-1].content)))
 
+
+
+
+# STRUCTURED OUTPUT
 # Recupétaion d'un resultat structuré dans le output
 class PersonalInfo(BaseModel):
     name: str
