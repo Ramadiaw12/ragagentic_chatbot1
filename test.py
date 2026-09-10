@@ -183,4 +183,12 @@ resp5=agent5.invoke(input={"messages":[HumanMessage("Donnes moi les derniers new
 print(display(Markdown(resp["messages"][-1].content)))
 
 
-# 
+# CREATE A TOOL WHO
+@wrap_tool_call
+def tools_errors(request, handler):
+    """Handle tool execution erros with custom messages"""
+    try:
+        return handler(request)
+    except Exception as e:
+        print("ERROR")
+        # retrun a custom error 
