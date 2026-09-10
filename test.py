@@ -230,3 +230,12 @@ agent=create_agent(
     context_schema=Context,
     debug=True
 )
+# Resultat 1
+result=agent.invoke(input={"messages":[
+    {"role": "user", "content": "Explain Agent Loop"}
+]},
+context={"user_role": "expert"}
+)
+print(display(Markdown(result["messages"][-1].content)))
+
+# Result 2

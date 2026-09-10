@@ -410,6 +410,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "chromadb" },
     { name = "ddgs" },
+    { name = "display" },
     { name = "ipykernel" },
     { name = "langchain" },
     { name = "langchain-community" },
@@ -432,6 +433,7 @@ dev = [
 requires-dist = [
     { name = "chromadb", specifier = ">=1.5.5" },
     { name = "ddgs", specifier = ">=9.16.0" },
+    { name = "display", specifier = ">=1.0.0" },
     { name = "ipykernel", specifier = ">=7.2.0" },
     { name = "langchain", specifier = ">=1.2.14" },
     { name = "langchain-community", specifier = ">=0.4.1" },
@@ -650,6 +652,12 @@ sdist = { url = "https://files.pythonhosted.org/packages/43/fa/6d96a0978d19e17b6
 wheels = [
     { url = "https://files.pythonhosted.org/packages/4e/8c/f3147f5c4b73e7550fe5f9352eaa956ae838d5c51eb58e7a25b9f3e2643b/decorator-5.2.1-py3-none-any.whl", hash = "sha256:d316bb415a2d9e2d2b3abcc4084c6502fc09240e292cd76a76afc106a1c8e04a", size = 9190, upload-time = "2025-02-24T04:41:32.565Z" },
 ]
+
+[[package]]
+name = "display"
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/1f/ee/0597a1a76c04e38caa67e5676be0ff116e5b4e8d52c3b323988448a058b3/display-1.0.0.tar.gz", hash = "sha256:899b28eb6b2e9609b04c2961d1af8b2695b04eb48c24b40cc73bf1bd4d59d4bc", size = 687, upload-time = "2013-11-20T17:52:12.256Z" }
 
 [[package]]
 name = "distro"
