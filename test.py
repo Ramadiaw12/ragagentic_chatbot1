@@ -239,3 +239,9 @@ context={"user_role": "expert"}
 print(display(Markdown(result["messages"][-1].content)))
 
 # Result 2
+result=agent.invoke(input={"messages":[
+    {"role": "user", "content": "Explain Agent Loop"}
+]},
+context={"user_role": "beginner"}
+)
+print(display(Markdown(result["messages"][-1].content)))
