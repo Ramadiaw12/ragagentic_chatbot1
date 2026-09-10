@@ -261,3 +261,8 @@ agent=create_agent(
     tools=[],
     response_format=ToolStrategy(PersonalInfo)
 )
+#  Result of the
+result=agent.invoke(
+    input={"messages":[{"role":"user", "content":"Extract personnal information from: Rahma, superrama86@gmail.com, https//superrama.com"}]},
+    personal=result["structured_response"]
+)
