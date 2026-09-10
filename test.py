@@ -4,13 +4,14 @@ import os
 from dotenv.ipython import load_dotenv
 from IPython.display import Markdown
 
-from langchain.agents.middleware import ModelRequest, ModelResponse, wrap_model_call, wrap_tool_call
+from langchain.agents.middleware import ModelRequest, ModelResponse, wrap_model_call, wrap_tool_call, dynamic_prompt, ModelRquest
 from langgraph.checkpoint.memory import InMemorySaver
 from langchain.messages import HumanMessage, AIMessage, SystemMessage
 # from langgraph.checkpoint.prostgres import PostgresSaver
 from langchain.tools import tool
 from ddgs import DDGS
 from langchain.messages import ToolMessage
+from typing import TypedDict
 
 # Load environnement variable from .env file
 load_dotenv(override=True)
@@ -207,3 +208,12 @@ agent=create_agent(
 
 
 # CREATE A SYSTEM_PROMPT CHOICE
+class Context(TypedDict):
+    user_role: str
+
+@dynamic_prompt
+def use_role_prompt(request: ModelRequest) -> str:
+    """Generate a system prompt based a user role"""
+    user_role=request.runtime.context.get("user_role", "user")
+    base_prompt="You are a helpful assistant."
+    if user_role
