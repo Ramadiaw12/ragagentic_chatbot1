@@ -4,12 +4,13 @@ import os
 from dotenv.ipython import load_dotenv
 from IPython.display import Markdown
 
-from langchain.agents.middleware import ModelRequest, ModelResponse, wrap_model_call
+from langchain.agents.middleware import ModelRequest, ModelResponse, wrap_model_call, wrap_tool_call
 from langgraph.checkpoint.memory import InMemorySaver
 from langchain.messages import HumanMessage, AIMessage, SystemMessage
 # from langgraph.checkpoint.prostgres import PostgresSaver
 from langchain.tools import tool
 from ddgs import DDGS
+from langchain.messages import ToolMessage
 
 # Load environnement variable from .env file
 load_dotenv(override=True)
@@ -73,7 +74,7 @@ print(resp["response"][-1].content)
 # creata an agent with a checkpointer to save the conversation in memory
 memory=InMemorySaver()
 agent3=create_agent(
-    model=llm,
+    model=advanced_llm,
     sytem_prompt="you are a helpful assistant",
     checkpointer=memory
 )
@@ -180,3 +181,6 @@ agent5 = create_agent(
 
 resp5=agent5.invoke(input={"messages":[HumanMessage("Donnes moi les derniers news sur l'intélligence artificielle")]})
 print(display(Markdown(resp["messages"][-1].content)))
+
+
+# 
