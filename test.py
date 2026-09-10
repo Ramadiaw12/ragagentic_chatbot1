@@ -183,7 +183,7 @@ resp5=agent5.invoke(input={"messages":[HumanMessage("Donnes moi les derniers new
 print(display(Markdown(resp["messages"][-1].content)))
 
 
-# CREATE A TOOL WHO
+# CREATE A MIDDLEWARES WHO MANAGE A TOOLS ERRORS
 @wrap_tool_call
 def tools_errors(request, handler):
     """Handle tool execution erros with custom messages"""
@@ -197,10 +197,13 @@ def tools_errors(request, handler):
         tool_call_id=request.tool_call["id"]
     )
 
-# 
+# Agent qui  
 agent=create_agent(
     model=advanced_llm,
     middleware=[tools_errors],
     tool=[web_research, get_employes_infor],
     debug=True
 )
+
+
+# CREATE A SYSTEM_PROMPT CHOICE
