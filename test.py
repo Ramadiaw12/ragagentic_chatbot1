@@ -222,3 +222,11 @@ def use_role_prompt(request: ModelRequest) -> str:
         return f"{base_prompt} Explained the context with simply and avoid jargon."
     
     return base_prompt
+
+agent=create_agent(
+    model=advanced_llm,
+    middleware=[dynamic_prompt],
+    tools=[],
+    context_schema=Context,
+    debug=True
+)
